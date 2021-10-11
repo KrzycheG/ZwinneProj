@@ -1,6 +1,21 @@
 package com.example.demo.book;
 
+import javax.persistence.*;
+
+@Entity
+@Table
  public class book {
+    @Id
+    @SequenceGenerator(
+            name = "book_sequence",
+            sequenceName = "book_sequence",
+            allocationSize = 1
+
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "student_sequence"
+    )
 
     private String title;
     private double price;
