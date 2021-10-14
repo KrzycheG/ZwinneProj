@@ -14,7 +14,7 @@ import javax.persistence.*;
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "student_sequence"
+            generator = "book_sequence"
     )
 
     private String title;
