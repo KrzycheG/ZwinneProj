@@ -5,6 +5,8 @@ import javax.persistence.*;
 @Entity
 @Table
  public class book {
+
+
     @Id
     @SequenceGenerator(
             name = "book_sequence",
@@ -16,16 +18,22 @@ import javax.persistence.*;
             strategy = GenerationType.SEQUENCE,
             generator = "book_sequence"
     )
-
+    private Long id;
     private String title;
     private double price;
     private int quantity;
 
-    public book(String title, double price, int quantity) {
+    public book(Long id, String title, double price, int quantity) {
+
+        this.id = id;
         this.title = title;
         this.price = price;
         this.quantity = quantity;
 
+
+    }
+
+    public book() {
     }
 
     public int getQuantity() {
@@ -52,10 +60,19 @@ import javax.persistence.*;
         this.price = price;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return "book{" +
-                "title='" + title + '\'' +
+                "id=" + id +
+                ", title='" + title + '\'' +
                 ", price=" + price +
                 ", quantity=" + quantity +
                 '}';
