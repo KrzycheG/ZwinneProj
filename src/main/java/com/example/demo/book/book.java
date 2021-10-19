@@ -20,15 +20,23 @@ import javax.persistence.*;
     )
     private Long id;
     private String title;
+    private String author;
+    private String publisher;
+    private int publicationDate;
+    private int categoryID;
     private double price;
-    private int quantity;
+    private int unitsInStock;
 
-    public book(Long id, String title, double price, int quantity) {
+    public book(Long id, String title,String author, String publisher, int publicationDate, double price, int unitsInStock, int categoryID) {
 
         this.id = id;
         this.title = title;
+        this.author =author;
+        this.publisher = publisher;
+        this.publicationDate = publicationDate;
         this.price = price;
-        this.quantity = quantity;
+        this.unitsInStock = unitsInStock;
+        this.categoryID = categoryID;
 
 
     }
@@ -36,12 +44,12 @@ import javax.persistence.*;
     public book() {
     }
 
-    public int getQuantity() {
-        return quantity;
+    public int getUnitsInStock() {
+        return unitsInStock;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setUnitsInStock(int quantity) {
+        this.unitsInStock = quantity;
     }
 
     public String getTitle() {
@@ -50,6 +58,30 @@ import javax.persistence.*;
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public String getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
+    }
+
+    public int getPublicationDate() {
+        return publicationDate;
+    }
+
+    public void setPublicationDate(int publicationDate) {
+        this.publicationDate = publicationDate;
     }
 
     public double getPrice() {
@@ -68,13 +100,29 @@ import javax.persistence.*;
         this.id = id;
     }
 
+    public int getCategoryID() { return categoryID; }
+
+    public void setCategoryID(int categoryID) { this.categoryID = categoryID; }
+
+
+
+
+
+
+
     @Override
     public String toString() {
         return "book{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
+                ", author=" + author +
+                ", publisher=" + publisher +
+                ", publication date=" + publicationDate +
                 ", price=" + price +
-                ", quantity=" + quantity +
+                ", units in stock=" + unitsInStock +
+                ", category ID=" + categoryID +
                 '}';
     }
+
+
 }

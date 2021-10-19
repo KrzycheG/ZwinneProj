@@ -16,18 +16,13 @@ public class bookConfig {
         return args -> {
             book potop = new book(
                     1L,
-                    "Potop",
-                    25,5
+                    "Potop","x","x",1,
+                    25,5 ,1
             );
 
-            book harryPotter = new book(
-                    2L,
-                    "harryPotter",
-                    25,5
-            );
 
             repository.saveAll(
-                    List.of(potop,harryPotter)
+                    List.of(potop) // dopisac reszte po przecinku
             );
         };
     }
