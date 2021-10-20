@@ -12,9 +12,7 @@ import ProductCard from '@/components/ProductCard'
 export default {
   components: { ProductCard }
 }
-
 </script>
 
 <style>
-
 </style>

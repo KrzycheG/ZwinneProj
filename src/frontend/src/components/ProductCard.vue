@@ -17,31 +17,30 @@ export default {
 </script>
 
 <style lang="css" scoped>
-  .product_image{
-    width: 150px;
-    height: 200px;
-    margin: 3px auto;
-    display: list-item;
-    border: 3px solid grey;
-  }
-  .Product_Card{
-    border: solid 5px grey;
-    width: 250px;
-    height: 350px;
-    display: block;
-  }
-  .Product_name{
-    margin-left: 10px;
-  }
-  .Product_price{
-    margin-left: 10px;
-  }
-  .Add_to_cart{
-    width: 40px;
-    height: 40px;
-    background-color: grey;
-    display: block;
-    margin: auto;
-  }
-
+.product_image{
+  width: 150px;
+  height: 200px;
+  margin: 3px auto;
+  display: list-item;
+  border: 3px solid grey;
+}
+.Product_Card{
+  border: solid 5px grey;
+  width: 250px;
+  height: 350px;
+  display: block;
+}
+.Product_name{
+  margin-left: 10px;
+}
+.Product_price{
+  margin-left: 10px;
+}
+.Add_to_cart{
+  width: 40px;
+  height: 40px;
+  background-color: grey;
+  display: block;
+  margin: auto;
+}
 </style>

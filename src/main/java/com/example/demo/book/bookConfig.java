@@ -1,5 +1,5 @@
 package com.example.demo.book;
-
+import javax.persistence.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
