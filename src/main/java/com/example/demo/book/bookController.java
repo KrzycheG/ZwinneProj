@@ -19,6 +19,7 @@ public class bookController {
         BookService = bookService;
     }
 
+    @CrossOrigin
     @GetMapping
     public List<book> getbooks(){
         return BookService.getbooks();
