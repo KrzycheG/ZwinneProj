@@ -19,19 +19,19 @@ public class bookController {
         BookService = bookService;
     }
 
-    @CrossOrigin
+
     @GetMapping
     public List<book> getbooks(){
         return BookService.getbooks();
     }
 
-    @CrossOrigin
+
     @PostMapping(path = "/add")
     public void addNewBook(@RequestBody book Book){
 
         BookService.addNewbook(Book);
     }
-    @CrossOrigin
+
     @DeleteMapping(path = "/{bookId}")
     public void deleteBook(@PathVariable("bookId") Long bookId){
 
