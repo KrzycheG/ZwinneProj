@@ -31,6 +31,8 @@ export default {
 .productList {
   display: flex;
   padding: 150px;
-  justify-content: space-between;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 25px;
 }
 </style>
