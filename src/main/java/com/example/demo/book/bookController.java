@@ -25,8 +25,8 @@ public class bookController {
         return BookService.getbooks();
     }
 
-
-    @PostMapping(path = "/")
+    @CrossOrigin
+    @PostMapping(path = "/add")
     public void addNewBook(@RequestBody book Book){
 
         BookService.addNewbook(Book);

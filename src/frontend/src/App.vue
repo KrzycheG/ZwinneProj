@@ -5,16 +5,18 @@
   <div class="productList">
     <product-card v-for="product of products" :key="product.id" :product="product"/>
   </div>
+  <PostProduct></PostProduct>
 </template>
-
 <script>
+
 import ProductCard from '@/components/ProductCard'
 import {
   useProduct
 } from '@/composables/useProduct'
+import PostProduct from '@/components/PostProduct'
 
 export default {
-  components: { ProductCard },
+  components: { PostProduct, ProductCard },
   setup () {
     const {
       getProducts, products
@@ -24,6 +26,7 @@ export default {
       products
     }
   }
+
 }
 </script>
 
