@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.List;
 
 
-
+@CrossOrigin
 @RestController
 @RequestMapping(path="api/v1/book")
 public class bookController {
@@ -31,7 +31,7 @@ public class bookController {
 
         BookService.addNewbook(Book);
     }
-
+    @CrossOrigin
     @DeleteMapping(path = "/{bookId}")
     public void deleteBook(@PathVariable("bookId") Long bookId){
 

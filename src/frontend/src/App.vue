@@ -5,7 +5,9 @@
   <div class="productList">
     <product-card v-for="product of products" :key="product.id" :product="product"/>
   </div>
+
   <PostProduct></PostProduct>
+  <DeleteProduct/>
 </template>
 <script>
 
@@ -14,9 +16,10 @@ import {
   useProduct
 } from '@/composables/useProduct'
 import PostProduct from '@/components/PostProduct'
+import DeleteProduct from '@/components/DeleteProduct'
 
 export default {
-  components: { PostProduct, ProductCard },
+  components: { ProductCard, PostProduct, DeleteProduct },
   setup () {
     const {
       getProducts, products
@@ -36,4 +39,5 @@ export default {
   padding: 150px;
   justify-content: space-between;
 }
+
 </style>
