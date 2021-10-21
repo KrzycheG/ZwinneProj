@@ -28,7 +28,7 @@
         <label for="categoryID"> Category id </label>
         <input type="text" id="categoryID" required v-model = "formData.categoryID">
       </div>
-      <button>Create Post</button>
+      <button>Add book</button>
     </form>
 </template>
 
