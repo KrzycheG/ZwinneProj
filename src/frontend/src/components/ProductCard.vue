@@ -2,6 +2,7 @@
   <article class="Product_Card" id="app">
     <!--uniwersalna scieżka do .jpg brak zdjecia, ktore bedzie wyswietlane w przypadku braku .jpg w bazie danego produktu -->
     <img class="product_image" src="../assets/brak_zdjecia.jpg">
+
     <div class="title">
       <span><strong>Tytuł:</strong></span>
       <p class="Product_name">{{ product.title }}</p>

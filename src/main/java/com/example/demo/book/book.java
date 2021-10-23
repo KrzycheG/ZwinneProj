@@ -26,8 +26,9 @@ import javax.persistence.*;
     private int categoryID;
     private double price;
     private int unitsInStock;
+    private String cover;
 
-    public book(Long id, String title,String author, String publisher, int publicationDate, double price, int unitsInStock, int categoryID) {
+    public book(Long id, String title,String author, String publisher, int publicationDate, double price, int unitsInStock, int categoryID, String cover) {
 
         this.id = id;
         this.title = title;
@@ -37,6 +38,7 @@ import javax.persistence.*;
         this.price = price;
         this.unitsInStock = unitsInStock;
         this.categoryID = categoryID;
+        this.cover = cover;
 
 
     }
@@ -104,11 +106,9 @@ import javax.persistence.*;
 
     public void setCategoryID(int categoryID) { this.categoryID = categoryID; }
 
+    public String getCover() {return cover;}
 
-
-
-
-
+    public void setCover(String cover) {this.cover = cover;}
 
     @Override
     public String toString() {

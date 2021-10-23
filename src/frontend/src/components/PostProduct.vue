@@ -28,6 +28,10 @@
         <label for="categoryID"> Category id </label>
         <input type="text" id="categoryID" required v-model = "formData.categoryID">
       </div>
+       <div>
+              <label for="cover"> Cover url </label>
+              <input type="text" id="coverId" required v-model = "formData.cover">
+            </div>
       <button>Add book</button>
     </form>
 </template>
@@ -45,7 +49,8 @@ export default {
         publicationDate: '',
         categoryID: '',
         price: '',
-        unitsInStock: ''
+        unitsInStock: '',
+        cover: ''
 
       }
     }
