@@ -29,7 +29,7 @@
         <input type="text" id="categoryID" required v-model = "formData.categoryID">
       </div>
        <div>
-              <label for="cover"> Cover url </label>
+              <label for="coverId"> Cover url </label>
               <input type="text" id="coverId" required v-model = "formData.cover">
             </div>
       <button>Add book</button>

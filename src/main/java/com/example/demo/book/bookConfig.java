@@ -1,10 +1,13 @@
 package com.example.demo.book;
 import javax.persistence.*;
+
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.List;
+import java.util.Optional;
 
 @Configuration
 public class bookConfig {
@@ -12,6 +15,7 @@ public class bookConfig {
     @Bean
     CommandLineRunner commandLineRunner(
             bookRepository repository){
+
 
         return args -> {
             book hobbit = new book(
@@ -65,10 +69,15 @@ public class bookConfig {
                     5,"https://images-na.ssl-images-amazon.com/images/I/51BYcXvTimL._SX332_BO1,204,203,200_.jpg"
             );
 
+            List<book> is = List.of(hobbit,it,ToE,DVC,FiOS);
+            for(book x: is ){
+               boolean bla = repository.findBookBytitle(x.getTitle()).isPresent();
+                System.out.println(bla);
+                if(!bla){
+                    repository.save(x);
 
-            repository.saveAll(
-                    List.of(hobbit,it,ToE,DVC,FiOS) // dopisac reszte po przecinku
-            );
+                }
+            }
         };
     }
 }
