@@ -12,7 +12,7 @@ public interface bookRepository
 
      @Query("SELECT s FROM book s WHERE s.title =?1")
      Optional<book> findBookBytitle(String title);
-
+     Optional<book> findAllCategory();
 
 
 

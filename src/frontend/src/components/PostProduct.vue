@@ -25,8 +25,8 @@
         <input type="text" id="unitsInStockId" required v-model = "formData.unitsInStock">
       </div>
       <div>
-        <label for="categoryID"> Category id </label>
-        <input type="text" id="categoryID" required v-model = "formData.categoryID">
+        <label for="categoryName"> Category name </label>
+        <input type="text" id="categoryName" required v-model = "formData.categoryName">
       </div>
        <div>
               <label for="coverId"> Cover url </label>
@@ -47,7 +47,7 @@ export default {
         author: '',
         publisher: '',
         publicationDate: '',
-        categoryID: '',
+        categoryName: '',
         price: '',
         unitsInStock: '',
         cover: ''

@@ -26,7 +26,7 @@ public class bookConfig {
                     1937,
                     29.99,
                     45 ,
-                    1,"https://images-na.ssl-images-amazon.com/images/I/61zxVpKmL8L.jpg"
+                    "Fantasy","https://images-na.ssl-images-amazon.com/images/I/61zxVpKmL8L.jpg"
             );
             book it = new book(
                     22L,
@@ -36,7 +36,7 @@ public class bookConfig {
                     1986,
                     39.99,
                     25 ,
-                    2,"https://i.ebayimg.com/images/g/glQAAOSwiTNgAEMG/s-l500.jpg"
+                    "Thiller", "https://i.ebayimg.com/images/g/glQAAOSwiTNgAEMG/s-l500.jpg"
             );
             book ToE = new book(
                     33L,
@@ -46,7 +46,7 @@ public class bookConfig {
                     2002,
                     79.99,
                     125 ,
-                    3,"https://prestigebookshop.com/wp-content/uploads/2019/02/book-image-5642.jpg"
+                    "Popular science","https://prestigebookshop.com/wp-content/uploads/2019/02/book-image-5642.jpg"
             );
             book DVC = new book(
                     44L,
@@ -56,7 +56,7 @@ public class bookConfig {
                     2003,
                     69.99,
                     72 ,
-                    4,"https://anylang.net/sites/default/files/styles/book_image/public/covers/the-da-vinci-code-589f9cee3df78c4758a2d9e7.jpg?itok=Qs2nkb__"
+                    "Drama","https://anylang.net/sites/default/files/styles/book_image/public/covers/the-da-vinci-code-589f9cee3df78c4758a2d9e7.jpg?itok=Qs2nkb__"
             );
             book FiOS = new book(
                     55L,
@@ -66,7 +66,7 @@ public class bookConfig {
                     2012,
                     39.99,
                     12 ,
-                    5,"https://images-na.ssl-images-amazon.com/images/I/51BYcXvTimL._SX332_BO1,204,203,200_.jpg"
+                    "Costam","https://images-na.ssl-images-amazon.com/images/I/51BYcXvTimL._SX332_BO1,204,203,200_.jpg"
             );
 
             List<book> is = List.of(hobbit,it,ToE,DVC,FiOS);

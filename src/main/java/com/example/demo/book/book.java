@@ -23,12 +23,12 @@ import javax.persistence.*;
     private String author;
     private String publisher;
     private int publicationDate;
-    private int categoryID;
+    private String categoryName;
     private double price;
     private int unitsInStock;
     private String cover;
 
-    public book(Long id, String title,String author, String publisher, int publicationDate, double price, int unitsInStock, int categoryID, String cover) {
+    public book(Long id, String title,String author, String publisher, int publicationDate, double price, int unitsInStock, String categoryName, String cover) {
 
         this.id = id;
         this.title = title;
@@ -37,7 +37,7 @@ import javax.persistence.*;
         this.publicationDate = publicationDate;
         this.price = price;
         this.unitsInStock = unitsInStock;
-        this.categoryID = categoryID;
+        this.categoryName = categoryName;
         this.cover = cover;
 
 
@@ -102,9 +102,13 @@ import javax.persistence.*;
         this.id = id;
     }
 
-    public int getCategoryID() { return categoryID; }
+    public String getCategoryName() {
+        return categoryName;
+    }
 
-    public void setCategoryID(int categoryID) { this.categoryID = categoryID; }
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
 
     public String getCover() {return cover;}
 
@@ -120,7 +124,7 @@ import javax.persistence.*;
                 ", publication date=" + publicationDate +
                 ", price=" + price +
                 ", units in stock=" + unitsInStock +
-                ", category ID=" + categoryID +
+                ", category name=" + categoryName +
                 '}';
     }
 
