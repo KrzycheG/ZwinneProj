@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,7 +24,15 @@ public class bookService {
         return BookRepository.findAll();
     }
 
+    public List<String> getCategories(){
 
+        ArrayList<String> category = new ArrayList<>();
+
+        for (book.category x : book.category.values()){
+            category.add(x.toString());
+        }
+        return category;
+    }
 
     public  void addNewbook(book book) {
 

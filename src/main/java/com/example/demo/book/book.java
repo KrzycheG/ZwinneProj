@@ -1,6 +1,12 @@
 package com.example.demo.book;
 
+
+
 import javax.persistence.*;
+
+enum category{
+    Thiller ,Dramat, Scifi,Horror,Fantasy
+}
 //
 @Entity
 @Table
@@ -18,17 +24,18 @@ import javax.persistence.*;
             strategy = GenerationType.SEQUENCE,
             generator = "book_sequence"
     )
+
     private Long id;
     private String title;
     private String author;
     private String publisher;
     private int publicationDate;
-    private String categoryName;
+    private category categoryName;
     private double price;
     private int unitsInStock;
     private String cover;
 
-    public book(Long id, String title,String author, String publisher, int publicationDate, double price, int unitsInStock, String categoryName, String cover) {
+    public book(Long id, String title,String author, String publisher, int publicationDate, double price, int unitsInStock, category categoryName, String cover) {
 
         this.id = id;
         this.title = title;
@@ -102,11 +109,11 @@ import javax.persistence.*;
         this.id = id;
     }
 
-    public String getCategoryName() {
+    public category getCategoryName() {
         return categoryName;
     }
 
-    public void setCategoryName(String categoryName) {
+    public void setCategoryName(category categoryName) {
         this.categoryName = categoryName;
     }
 
@@ -127,6 +134,8 @@ import javax.persistence.*;
                 ", category name=" + categoryName +
                 '}';
     }
-
+    enum category{
+        Thiller ,Dramat, Scifi,Horror,Fantasy
+    }
 
 }

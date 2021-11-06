@@ -25,6 +25,9 @@ public class bookController {
         return BookService.getbooks();
     }
 
+    @GetMapping(path = "/categories")
+    public List<String> getCategories(){ return BookService.getCategories();}
+
 
     @PostMapping(path = "/add")
     public void addNewBook(@RequestBody book Book){
