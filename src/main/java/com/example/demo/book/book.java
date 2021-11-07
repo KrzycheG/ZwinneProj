@@ -2,7 +2,12 @@ package com.example.demo.book;
 
 
 
+import com.example.demo.invoice.invoice;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 enum category{
     Thiller ,Dramat, Scifi,Horror,Fantasy
@@ -34,6 +39,16 @@ enum category{
     private double price;
     private int unitsInStock;
     private String cover;
+
+    @OneToMany(
+            mappedBy = "book",
+            orphanRemoval = true,
+            cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+            fetch = FetchType.LAZY
+    )
+    private List<invoice> invoices = new ArrayList<>();
+
+
 
     public book(Long id, String title,String author, String publisher, int publicationDate, double price, int unitsInStock, category categoryName, String cover) {
 

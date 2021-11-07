@@ -2,17 +2,101 @@ package com.example.demo.invoice;
 
 import com.example.demo.book.book;
 
+import javax.persistence.*;
+
+import java.util.Collection;
+
+import static javax.persistence.GenerationType.SEQUENCE;
+
+@Entity(name = "Invoice")
+@Table(name = "invoice")
 public class invoice {
 
+    @Id
+    @SequenceGenerator(
+            name = "invoice_sequence",
+            sequenceName = "invoice_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = SEQUENCE,
+            generator = "invoice_sequence"
+    )
+    @Column(
+            name = "id"
+    )
     private Long invoiceID;
+
+    @Column(
+            name = "last_name",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
     private String lastName;
+
+    @Column(
+            name = "first_name",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
     private String firstName;
+
+    @Column(
+            name = "street",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
     private String street;
+
+    @Column(
+            name = "apartment_number",
+            nullable = false
+
+    )
     private int apartmentNumber;
+
+    @Column(
+            name = "house_number",
+            nullable = false
+
+    )
     private int houseNumber;
+
+    @Column(
+            name = "city",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
     private String city;
+
+    @Column(
+            name = "zip_code",
+            nullable = false
+
+    )
     private int zipCode;
+
+    @Column(
+            name = "country",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
     private String country;
+
+
+
+    @ManyToOne(cascade = {CascadeType.REMOVE, CascadeType.PERSIST})
+    @JoinColumn(name = "book_id")
+    private book book;
+
+    public com.example.demo.book.book getBook() {
+        return book;
+    }
+
+    public void setBook(com.example.demo.book.book book) {
+        this.book = book;
+    }
+
 
     public invoice(Long invoiceID, String lastName,
                    String firstName, String street,
