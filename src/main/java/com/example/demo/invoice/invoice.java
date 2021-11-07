@@ -156,4 +156,20 @@ public class invoice {
 
     public String getCountry() {return country;}
     public void setCountry(String country) {this.country = country;}
+
+    @Override
+    public String toString() {
+        return "invoice{" +
+                "invoiceID=" + invoiceID +
+                ", lastName='" + lastName + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", street='" + street + '\'' +
+                ", apartmentNumber=" + apartmentNumber +
+                ", houseNumber=" + houseNumber +
+                ", city='" + city + '\'' +
+                ", zipCode=" + zipCode +
+                ", country='" + country + '\'' +
+                ", book=" + book +
+                '}';
+    }
 }
