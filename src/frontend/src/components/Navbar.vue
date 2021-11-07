@@ -9,8 +9,8 @@
       </form>
     </div>
     <ul>
-      <li><router-link to="/">Strona główna</router-link></li>
-      <li><a href="#">Kategorie</a></li>
+      <li><router-link to="/" @click="selectCategory('')">Strona główna</router-link></li>
+      <CategoryDropdown></CategoryDropdown>
       <li><router-link to="/cart">Koszyk</router-link></li>
       <li>
         <a href="#"><i class="fa fa-facebook"></i></a>
@@ -27,9 +27,24 @@
 </template>
 
 <script>
+import CategoryDropdown from '@/components/CategoryDropdown'
+import { useProduct } from '@/composables/useProduct'
 export default {
-  name: 'Navbar'
+  name: 'Navbar',
+  components: { CategoryDropdown },
+  setup () {
+    const {
+      setSelectedCategory
+    } = useProduct()
+    const selectCategory = (category) => {
+      setSelectedCategory(category)
+    }
+    return {
+      selectCategory
+    }
+  }
 }
+
 </script>
 
 <style>
@@ -94,6 +109,7 @@ header .search-box{
   color: #fff;
 }
 header ul {
+  align-items: center;
   flex:2;
   display: flex;
   justify-content: space-evenly;
