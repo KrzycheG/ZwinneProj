@@ -11,7 +11,7 @@ import java.util.Collection;
 import java.util.List;
 
 enum category{
-    Thiller ,Dramat, Scifi,Horror,Fantasy
+    Thiller ,Dramat, Scifi,Horror,Fantasy, Romance
 }
 //
 @Entity
@@ -151,7 +151,7 @@ enum category{
                 '}';
     }
     enum category{
-        Thiller ,Dramat, Scifi,Horror,Fantasy
+        Thiller ,Dramat, Scifi,Horror,Fantasy, Romance
     }
 
 }
