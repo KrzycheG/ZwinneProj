@@ -1,6 +1,7 @@
 package com.example.demo.pdfService;
 
 import com.lowagie.text.*;
+import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfWriter;
 import org.springframework.stereotype.Service;
 
@@ -15,19 +16,34 @@ public class pdfGeneratorService {
 
         document.open();
         Font fontTitle= FontFactory.getFont(FontFactory.TIMES);
-        fontTitle.setSize(18);
+        fontTitle.setSize(22);
 
-        Paragraph paragraph = new Paragraph("This is a title.",fontTitle);
-        paragraph.setAlignment(Paragraph.ALIGN_CENTER);
+        Paragraph tytul = new Paragraph("FAKTURA",fontTitle);
+        tytul.setAlignment(Paragraph.ALIGN_CENTER);
 
-        Font fontParagraph = FontFactory.getFont(FontFactory.HELVETICA);
+        Font fontParagraph = FontFactory.getFont(FontFactory.TIMES);
         fontParagraph.setSize(12);
 
-        Paragraph paragraph2 = new Paragraph("This is a paragraph.",fontParagraph);
-        paragraph2.setAlignment(Paragraph.ALIGN_LEFT);
+        Font fontBold = FontFactory.getFont(FontFactory.TIMES_BOLD);
+        fontBold.setSize(10);
 
-        document.add(paragraph);
-        document.add(paragraph2);
+        Paragraph nadawca = new Paragraph("Dane nadawcy:",fontBold);
+        nadawca.setAlignment(Paragraph.ALIGN_LEFT);
+
+        String daneNadawcy =
+                "\nTWOJA KSIAZKA\n"+
+                "ul. Mariacka 2\n"+
+                "Katowice 40-132\n"+
+                "NIP: 9348539234\n";
+
+        Paragraph paraDane = new Paragraph(daneNadawcy,fontParagraph);
+        paraDane.setAlignment(Paragraph.ALIGN_LEFT);
+
+
+
+        document.add(tytul);
+        document.add(nadawca);
+        document.add(paraDane);
         document.close();
     }
 }
