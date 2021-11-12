@@ -2,6 +2,7 @@ package com.example.demo.book;
 
 
 
+import com.example.demo.cart.cart;
 import com.example.demo.invoice.invoice;
 
 import javax.persistence.*;
@@ -46,7 +47,7 @@ enum category{
             cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
             fetch = FetchType.LAZY
     )
-    private List<invoice> invoices = new ArrayList<>();
+    private List<cart> carts= new ArrayList<>();
 
 
 

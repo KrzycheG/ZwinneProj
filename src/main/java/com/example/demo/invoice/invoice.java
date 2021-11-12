@@ -1,6 +1,7 @@
 package com.example.demo.invoice;
 
 import com.example.demo.book.book;
+import com.example.demo.cart.cart;
 
 import javax.persistence.*;
 
@@ -84,18 +85,10 @@ public class invoice {
     private String country;
 
 
-
     @ManyToOne(cascade = {CascadeType.REMOVE, CascadeType.PERSIST})
-    @JoinColumn(name = "book_id")
-    private book book;
+    @JoinColumn(name = "cart_id")
+    private com.example.demo.cart.cart cart;
 
-    public com.example.demo.book.book getBook() {
-        return book;
-    }
-
-    public void setBook(com.example.demo.book.book book) {
-        this.book = book;
-    }
 
 
     public invoice(Long invoiceID, String lastName,
@@ -169,7 +162,6 @@ public class invoice {
                 ", city='" + city + '\'' +
                 ", zipCode=" + zipCode +
                 ", country='" + country + '\'' +
-                ", book=" + book +
                 '}';
     }
 }
