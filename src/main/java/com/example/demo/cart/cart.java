@@ -26,25 +26,14 @@ public class cart {
             strategy = SEQUENCE,
             generator = "cart_sequence"
     )
-    @Column(
-            name = "id"
-    )
+    @Column(nullable = true)
     private Long cartID;
-    @Column(
-            name = "quantity",
-            nullable = false
-    )
     private int quantity;
-
-    @Column(
-            name = "cartTotalPrice",
-            nullable = false
-    )
     private double cartTotalPrice;
 
-    @ManyToOne(cascade = {CascadeType.REMOVE, CascadeType.PERSIST})
-    @JoinColumn(name = "book_id")
-    private book book;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="bookID", nullable=true)
+    private book books;
 
 
     @OneToMany(

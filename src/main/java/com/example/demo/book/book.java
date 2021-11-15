@@ -30,7 +30,7 @@ enum category{
             strategy = GenerationType.SEQUENCE,
             generator = "book_sequence"
     )
-
+    @Column(nullable = true)
     private Long id;
     private String title;
     private String author;
@@ -41,13 +41,8 @@ enum category{
     private int unitsInStock;
     private String cover;
 
-    @OneToMany(
-            mappedBy = "book",
-            orphanRemoval = true,
-            cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
-            fetch = FetchType.LAZY
-    )
-    private List<cart> carts= new ArrayList<>();
+    @OneToMany(cascade=CascadeType.ALL, mappedBy="books")
+    private List<cart> carts;
 
 
 
