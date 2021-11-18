@@ -103,10 +103,10 @@ header .search-box{
   border:none;
   position: absolute;
   top:0;
-  right: 0;
+  right: -60px;
   transform: scale(0.9);
   background: green;
-  color: #fff;
+  color: white;
 }
 header ul {
   align-items: center;
