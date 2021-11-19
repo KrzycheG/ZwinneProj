@@ -12,10 +12,12 @@
           <div class="cart-info">
             <img :src="product.cover">
             <div>
-              <p>{{product.title}}</p>
+              <p>Autor: {{product.author}}</p>
+              <p>Tytuł: {{product.title}}</p>
+              <p>Gatunek: {{product.categoryName}}</p>
               <small>Cena: {{product.price}} zł </small>
               <br>
-              <a href=""> Usuń</a>
+              <button class="Delete_from_cart" @click="deleteClick"> Usuń</button>
             </div>
           </div>
         </td>
@@ -36,6 +38,7 @@
 
 <script>
 import { useCartProduct } from '@/composables/useCartProduct'
+// import axios from "axios";
 
 export default {
   name: 'Koszyk',
@@ -45,6 +48,9 @@ export default {
     } = useCartProduct()
     getProducts()
     getsum()
+    // const deleteClick = async () => {
+    //   await axios.post('http://localhost:8080/api/v1/cart/books/' + props.product.id + '/carts', { cartID: 1, quantity: 1 })
+    // }
     return {
       products,
       sum
