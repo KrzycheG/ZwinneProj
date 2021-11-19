@@ -6,37 +6,50 @@
             <th>Ilosć</th>
             <th>Wartość</th>
         </tr>
-      <tr>
+
+      <tr v-for="product of products" :key="product.id" :product="product">
         <td>
           <div class="cart-info">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg">
+            <img :src="product.cover">
             <div>
-              <p>Harry Potter</p>
-              <small>Cena: 25,50zł </small>
+              <p>{{product.title}}</p>
+              <small>Cena: {{product.price}} zł </small>
               <br>
               <a href=""> Usuń</a>
             </div>
           </div>
         </td>
         <td><input type="number" value="1"></td>
-        <td>25,50zł</td>
+        <td>{{product.price}} zł</td>
       </tr>
     </table>
       <div class="total-price">
         <table>
           <tr>
               <td>Suma</td>
-            <td>200zł</td>
+            <td>{{sum}} zł</td>
           </tr>
         </table>
-
       </div>
 </div>
 </template>
 
 <script>
+import { useCartProduct } from '@/composables/useCartProduct'
+
 export default {
-  name: 'Koszyk'
+  name: 'Koszyk',
+  setup () {
+    const {
+      getProducts, products, getsum, sum
+    } = useCartProduct()
+    getProducts()
+    getsum()
+    return {
+      products,
+      sum
+    }
+  }
 }
 </script>
 
