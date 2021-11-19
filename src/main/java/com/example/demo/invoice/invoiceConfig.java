@@ -1,7 +1,5 @@
 package com.example.demo.invoice;
 
-import com.example.demo.book.book;
-import com.example.demo.book.bookRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

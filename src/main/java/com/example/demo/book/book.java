@@ -4,6 +4,7 @@ package com.example.demo.book;
 
 import com.example.demo.cart.cart;
 import com.example.demo.invoice.invoice;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ enum category{
     Thiller ,Dramat, Scifi,Horror,Fantasy, Romance
 }
 //
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 @Table
  public class book {
@@ -41,8 +43,8 @@ enum category{
     private int unitsInStock;
     private String cover;
 
-    @OneToMany(cascade=CascadeType.ALL, mappedBy="books")
-    private List<cart> carts;
+    @OneToMany(cascade=CascadeType.ALL, mappedBy="books", orphanRemoval = true)
+    private List<cart> carts = new ArrayList<>();
 
 
 

@@ -1,12 +1,6 @@
 package com.example.demo.invoice;
 
-import com.example.demo.book.book;
-import com.example.demo.cart.cart;
-
 import javax.persistence.*;
-
-import java.util.Collection;
-
 import static javax.persistence.GenerationType.SEQUENCE;
 
 @Entity(name = "Invoice")

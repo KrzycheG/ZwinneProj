@@ -2,6 +2,7 @@ package com.example.demo.book;
 import javax.persistence.*;
 
 
+import com.example.demo.cart.cart;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -78,6 +79,22 @@ public class bookConfig {
 
                 }
             }
+            book bac = new book(
+                    51L,
+                    "Opowiesci z Narni",
+                    "Zielony Johnny",
+                    "Zielen i trawa",
+                    2021,
+                    100.00,
+                    2 ,
+                    book.category.Romance,"https://images-na.ssl-images-amazon.com/images/I/51BYcXvTimL._SX332_BO1,204,203,200_.jpg"
+            );
+
+            cart crt = new cart();
+
+
         };
+
+
     }
 }

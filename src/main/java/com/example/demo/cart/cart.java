@@ -3,6 +3,9 @@ package com.example.demo.cart;
 
 import com.example.demo.book.book;
 import com.example.demo.invoice.invoice;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 
@@ -29,11 +32,13 @@ public class cart {
     @Column(nullable = true)
     private Long cartID;
     private int quantity;
-    private double cartTotalPrice;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="bookID", nullable=true)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
     private book books;
+
 
 
     @OneToMany(
@@ -42,18 +47,19 @@ public class cart {
             cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
             fetch = FetchType.LAZY
     )
+    @JsonIgnore
     private List<invoice> invoices= new ArrayList<>();
 
 
-    public cart(int quantity, double cartTotalPrice) {
+    public cart(int quantity) {
         this.quantity = quantity;
-        this.cartTotalPrice = cartTotalPrice;
+
     }
 
-    public cart(Long cartID, int quantity, double cartTotalPrice) {
+    public cart(Long cartID, int quantity) {
         this.cartID = cartID;
         this.quantity = quantity;
-        this.cartTotalPrice = cartTotalPrice;
+
     }
 
     public cart() {
@@ -63,15 +69,20 @@ public class cart {
     public void setCartID(Long cartID) {this.cartID = cartID;}
     public int getQuantity() {return quantity;}
     public void setQuantity(int quantity) {this.quantity = quantity;}
-    public double getCartTotalPrice() {return cartTotalPrice;}
-    public void setCartTotalPrice(double cartTotalPrice) {this.cartTotalPrice = cartTotalPrice;}
+
+    public book getBooks() {
+        return books;
+    }
+
+    public void setBooks(book books) {
+        this.books = books;
+    }
 
     @Override
     public String toString() {
         return "cart{" +
                 "cartID=" + cartID +
                 ", quantity=" + quantity +
-                ", cartTotalPrice=" + cartTotalPrice +
                 '}';
     }
 }
