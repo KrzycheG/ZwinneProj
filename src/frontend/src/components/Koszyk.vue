@@ -38,7 +38,7 @@
 
 <script>
 import { useCartProduct } from '@/composables/useCartProduct'
-// import axios from "axios";
+import axios from 'axios'
 
 export default {
   name: 'Koszyk',
@@ -48,9 +48,10 @@ export default {
     } = useCartProduct()
     getProducts()
     getsum()
-    // const deleteClick = async () => {
-    //   await axios.post('http://localhost:8080/api/v1/cart/books/' + props.product.id + '/carts', { cartID: 1, quantity: 1 })
-    // }
+
+    const deleteClick = async () => {
+      await axios.post('http://localhost:8080/api/v1/cart/books/' + props.product.id + '/carts', { cartID: 1, quantity: 1 })
+     }
     return {
       products,
       sum
