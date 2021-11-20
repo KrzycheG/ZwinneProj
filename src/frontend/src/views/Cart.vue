@@ -1,6 +1,6 @@
 <template>
   <div class="koszyk">
-    <koszyk v-for="product of products" :key="product.id" :product="product"/>
+    <koszyk></koszyk>
   </div>
   <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#checkout">Uzupełnij dane do wysyłki</button>
   <checkout></checkout>

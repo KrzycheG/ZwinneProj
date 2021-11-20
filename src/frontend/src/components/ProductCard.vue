@@ -24,7 +24,7 @@ export default {
   props: ['product'],
   setup (props) {
     const handleClick = async () => {
-      await axios.post('http://localhost:8080/api/v1/cart/books/' + props.product.id + '/carts', { cartID: 1, quantity: 1 })
+      await axios.post('http://localhost:8080/api/v1/cart/books/' + props.product.id + '/carts', { cartID: Math.randomInt, quantity: 1 })
       alert('Dodano do koszyka!')
     }
     return {
