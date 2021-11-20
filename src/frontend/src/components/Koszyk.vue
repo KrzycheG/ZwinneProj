@@ -15,6 +15,7 @@
               <p>Autor: {{product.author}}</p>
               <p>Tytuł: {{product.title}}</p>
               <p>Gatunek: {{product.categoryName}}</p>
+              <p>id: {{product.id}}</p>
               <small>Cena: {{product.price}} zł </small>
               <br>
               <button class="Delete_from_cart" @click="deleteClick"> Usuń</button>
@@ -42,17 +43,18 @@ import axios from 'axios'
 
 export default {
   name: 'Koszyk',
-  setup () {
+  props: ['product'],
+  setup (props) {
     const {
       getProducts, products, getsum, sum
     } = useCartProduct()
     getProducts()
     getsum()
-
     const deleteClick = async () => {
-      await axios.post('http://localhost:8080/api/v1/cart/books/' + props.product.id + '/carts', { cartID: 1, quantity: 1 })
-     }
+      await axios.delete('http://localhost:8080/api/v1/cart/books/carts/' + this.product.id)
+    }
     return {
+      deleteClick,
       products,
       sum
     }
