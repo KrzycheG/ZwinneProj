@@ -1,13 +1,7 @@
 <template>
 <div class="small-container cart-page">
     <table>
-        <tr>
-            <th>Produkty</th>
-            <th>Ilosć</th>
-            <th>Wartość</th>
-        </tr>
-
-      <tr v-for="product of products" :key="product.id" :product="product">
+      <tr>
         <td>
           <div class="cart-info">
             <img :src="product.cover">
@@ -26,37 +20,23 @@
         <td>{{product.price}} zł</td>
       </tr>
     </table>
-      <div class="total-price">
-        <table>
-          <tr>
-              <td>Suma</td>
-            <td>{{sum}} zł</td>
-          </tr>
-        </table>
-      </div>
+
 </div>
 </template>
 
 <script>
-import { useCartProduct } from '@/composables/useCartProduct'
 import axios from 'axios'
 
 export default {
   name: 'Koszyk',
   props: ['product'],
   setup (props) {
-    const {
-      getProducts, products, getsum, sum
-    } = useCartProduct()
-    getProducts()
-    getsum()
     const deleteClick = async () => {
-      await axios.delete('http://localhost:8080/api/v1/cart/books/carts/' + this.product.id)
+      await axios.delete('http://localhost:8080/api/v1/cart/books/carts/' + props.product.id)
+      window.location.reload()
     }
     return {
-      deleteClick,
-      products,
-      sum
+      deleteClick
     }
   }
 }
