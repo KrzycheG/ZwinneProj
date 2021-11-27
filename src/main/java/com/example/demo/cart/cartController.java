@@ -48,4 +48,15 @@ public class cartController {
 
     }
 
+    @DeleteMapping("/books/carts/{bookId}")
+    public void deleteCart(
+
+            @PathVariable(value = "bookId") Long bookId
+
+    ){
+
+        CartService.deleteCart(bookId);
+
+    }
+
 }
