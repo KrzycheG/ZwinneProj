@@ -3,7 +3,6 @@ package com.example.demo.cart;
 import com.example.demo.book.book;
 import com.example.demo.book.bookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
@@ -39,18 +38,6 @@ public class cartService {
 
     }
 
-    public void deleteCart(
-
-            Long bookID
-    ){
-        CartRepository.findByBooks_Id(bookID)
-                .map(book -> {
-                    CartRepository.delete(book);
-                    return new ResponseEntity<>(null, HttpStatus.OK);
-                });
-
-    }
-
     public List<book> cartAllBooks(){
 
         List<cart> carts = CartRepository.findAll();
@@ -75,7 +62,6 @@ public class cartService {
         for(book x : sumBook){
 
             sumo+= x.getPrice();
-
         }
         suma.add(sumo);
 
@@ -83,5 +69,17 @@ public class cartService {
 
     }
 
+    public void deleteBookFromCart(
+            Long bookID
+    ) {
 
+        cart cartDel = CartRepository.findByBooks_Id(bookID);
+
+        CartRepository.findByCartIDAndBooks_Id(cartDel.getCartID(), bookID).map(comment -> {
+            CartRepository.delete(comment);
+            return ResponseEntity.ok().build();
+
+        });
+
+    }
 }

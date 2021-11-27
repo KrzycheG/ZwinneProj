@@ -1,42 +1,44 @@
 <template>
 <div class="small-container cart-page">
     <table>
-        <tr>
-            <th>Produkty</th>
-            <th>Ilosć</th>
-            <th>Wartość</th>
-        </tr>
       <tr>
         <td>
           <div class="cart-info">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg">
+            <img :src="product.cover">
             <div>
-              <p>Harry Potter</p>
-              <small>Cena: 25,50zł </small>
+              <p>Autor: {{product.author}}</p>
+              <p>Tytuł: {{product.title}}</p>
+              <p>Gatunek: {{product.categoryName}}</p>
+              <p>id: {{product.id}}</p>
+              <small>Cena: {{product.price}} zł </small>
               <br>
-              <a href=""> Usuń</a>
+              <button class="Delete_from_cart" @click="deleteClick"> Usuń</button>
             </div>
           </div>
         </td>
         <td><input type="number" value="1"></td>
-        <td>25,50zł</td>
+        <td>{{product.price}} zł</td>
       </tr>
     </table>
-      <div class="total-price">
-        <table>
-          <tr>
-              <td>Suma</td>
-            <td>200zł</td>
-          </tr>
-        </table>
 
-      </div>
 </div>
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
-  name: 'Koszyk'
+  name: 'Koszyk',
+  props: ['product'],
+  setup (props) {
+    const deleteClick = async () => {
+      await axios.delete('http://localhost:8080/api/v1/cart/books/carts/' + props.product.id)
+      window.location.reload()
+    }
+    return {
+      deleteClick
+    }
+  }
 }
 </script>
 

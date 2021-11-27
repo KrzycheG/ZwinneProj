@@ -17,11 +17,14 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   name: 'ProductCard',
   props: ['product'],
-  setup () {
-    const handleClick = () => {
+  setup (props) {
+    const handleClick = async () => {
+      await axios.post('http://localhost:8080/api/v1/cart/books/' + props.product.id + '/carts', { cartID: Math.randomInt, quantity: 1 })
       alert('Dodano do koszyka!')
     }
     return {
