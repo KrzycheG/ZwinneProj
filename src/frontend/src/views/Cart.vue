@@ -50,4 +50,8 @@ button{
  float: right;
   margin-right: 60px;
 }
+.total-price{
+  display: flex;
+  justify-content: flex-end;
+}
 </style>
