@@ -3,7 +3,8 @@ import { computed, ref } from 'vue'
 
 const state = ref({
   products: [],
-  sum: 0
+  sum: 0,
+  totalItems: 0
 })
 export const useCartProduct = () => {
   const getProducts = async () => {
@@ -20,6 +21,7 @@ export const useCartProduct = () => {
     getProducts,
     products: computed(() => state.value.products),
     getsum,
-    sum: computed(() => state.value.sum)
+    sum: computed(() => state.value.sum),
+    totalItems: computed(() => state.value.products.length)
   }
 }

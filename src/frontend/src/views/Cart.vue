@@ -6,7 +6,7 @@
         <th>Ilosć</th>
         <th>Wartość</th>
       </tr>
-      <koszyk v-for="product of products" :key="product.id" :product="product"/>
+      <koszyk @product-delete="handleDelete" v-for="product of products" :key="product.id" :product="product"/>
     </table>
   </div>
   <div class="total-price">
@@ -34,8 +34,12 @@ export default {
     } = useCartProduct()
     getProducts()
     getsum()
+    const handleDelete = () => {
+      getProducts()
+      getsum()
+    }
     return {
-      products, sum
+      products, sum, handleDelete
     }
   }
 }

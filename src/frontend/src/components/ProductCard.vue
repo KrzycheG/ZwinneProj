@@ -1,6 +1,6 @@
 <template>
   <article class="Product_Card" id="app">
-    <img class="product_image" :src=product.cover>
+    <img class="product_image" alt="Okładka ksiazki" :src=product.cover>
     <div class="title">
       <span><strong>Tytuł:</strong></span>
       <p class="Product_name">{{ product.title }}</p>
@@ -11,7 +11,7 @@
     </div>
     <div class="footer-card">
       <span class="Product_price">{{ product.price }}zł</span>
-      <button class="Add_to_cart" @click="handleClick"><img class="CartIMG" src="../assets/cart.png"></button>
+      <button class="Add_to_cart" @click="handleClick"><img class="CartIMG" alt="symbol dodawania do koszyka" src="../assets/cart.png"></button>
     </div>
   </article>
 </template>
@@ -22,10 +22,11 @@ import axios from 'axios'
 export default {
   name: 'ProductCard',
   props: ['product'],
-  setup (props) {
+  setup (props, { emit }) {
     const handleClick = async () => {
       await axios.post('http://localhost:8080/api/v1/cart/books/' + props.product.id + '/carts', { cartID: Math.randomInt, quantity: 1 })
       alert('Dodano do koszyka!')
+      emit('product-add', props.product.id)
     }
     return {
       handleClick

@@ -1,6 +1,6 @@
 <template>
   <div class="productList">
-    <product-card v-for="product of products" :key="product.id" :product="product"/>
+    <product-card @product-add="handleAdd" v-for="product of products" :key="product.id" :product="product"/>
   </div>
 </template>
 <script>
@@ -8,6 +8,7 @@ import ProductCard from '@/components/ProductCard'
 import {
   useProduct
 } from '@/composables/useProduct'
+import { useCartProduct } from '@/composables/useCartProduct'
 export default {
   components: { ProductCard },
   setup () {
@@ -15,8 +16,14 @@ export default {
       getProducts, products
     } = useProduct()
     getProducts()
+    const {
+      getProducts: getCartProducts
+    } = useCartProduct()
+    const handleAdd = () => {
+      getCartProducts()
+    }
     return {
-      products
+      products, handleAdd
     }
   }
 }

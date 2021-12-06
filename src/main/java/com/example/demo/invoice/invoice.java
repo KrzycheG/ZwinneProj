@@ -45,17 +45,17 @@ public class invoice {
 
     @Column(
             name = "apartment_number",
-            nullable = false
-
+            nullable = false,
+            columnDefinition = "TEXT"
     )
-    private int apartmentNumber;
+    private String apartmentNumber;
 
     @Column(
             name = "house_number",
-            nullable = false
-
+            nullable = false,
+            columnDefinition = "TEXT"
     )
-    private int houseNumber;
+    private String houseNumber;
 
     @Column(
             name = "city",
@@ -66,10 +66,10 @@ public class invoice {
 
     @Column(
             name = "zip_code",
-            nullable = false
-
+            nullable = false,
+            columnDefinition = "TEXT"
     )
-    private int zipCode;
+    private String zipCode;
 
     @Column(
             name = "country",
@@ -87,8 +87,8 @@ public class invoice {
 
     public invoice(Long invoiceID, String lastName,
                    String firstName, String street,
-                   int apartmentNumber, int houseNumber,
-                   String city, int zipCode, String country) {
+                   String apartmentNumber, String houseNumber,
+                   String city, String zipCode, String country) {
         this.invoiceID = invoiceID;
         this.lastName = lastName;
         this.firstName = firstName;
@@ -101,8 +101,8 @@ public class invoice {
     }
 
     public invoice(String lastName, String firstName,
-                   String street, int apartmentNumber,
-                   int houseNumber, String city, int zipCode,
+                   String street, String apartmentNumber,
+                   String houseNumber, String city, String zipCode,
                    String country) {
         this.lastName = lastName;
         this.firstName = firstName;
@@ -129,17 +129,17 @@ public class invoice {
     public String getStreet() {return street;}
     public void setStreet(String street) {this.street = street;}
 
-    public int getApartmentNumber() {return apartmentNumber;}
-    public void setApartmentNumber(int apartmentNumber) {this.apartmentNumber = apartmentNumber;}
+    public String getApartmentNumber() {return apartmentNumber;}
+    public void setApartmentNumber(String apartmentNumber) {this.apartmentNumber = apartmentNumber;}
 
-    public int getHouseNumber() {return houseNumber;}
-    public void setHouseNumber(int houseNumber) {this.houseNumber = houseNumber;}
+    public String getHouseNumber() {return houseNumber;}
+    public void setHouseNumber(String houseNumber) {this.houseNumber = houseNumber;}
 
     public String getCity() {return city;}
     public void setCity(String city) {this.city = city;}
 
-    public int getZipCode() {return zipCode;}
-    public void setZipCode(int zipCode) {this.zipCode = zipCode;}
+    public String getZipCode() {return zipCode;}
+    public void setZipCode(String zipCode) {this.zipCode = zipCode;}
 
     public String getCountry() {return country;}
     public void setCountry(String country) {this.country = country;}
