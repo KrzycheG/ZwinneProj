@@ -19,10 +19,10 @@ public class invoiceConfig {
                             "Andrzej",
                             "Marian",
                             "Wiejska",
-                            14,
-                            25,
+                            "14",
+                            "25",
                             "Ustrzyki dolne",
-                            007,
+                            "007",
                             "Jugoslawia"
                     );
 

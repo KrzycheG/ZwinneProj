@@ -4,7 +4,7 @@
       <tr>
         <td>
           <div class="cart-info">
-            <img :src="product.cover">
+            <img alt="okładka" :src="product.cover">
             <div>
               <p>Autor: {{product.author}}</p>
               <p>Tytuł: {{product.title}}</p>
@@ -30,10 +30,10 @@ import axios from 'axios'
 export default {
   name: 'Koszyk',
   props: ['product'],
-  setup (props) {
+  setup (props, { emit }) {
     const deleteClick = async () => {
       await axios.delete('http://localhost:8080/api/v1/cart/books/carts/' + props.product.id)
-      window.location.reload()
+      emit('product-delete', props.product.id)
     }
     return {
       deleteClick
@@ -84,11 +84,6 @@ td img{
   height: 200px;
   margin-right: 20px;
   box-shadow: 0 0 10px #000;
-}
-.total-price{
-  display: flex;
-  justify-content: flex-end;
-
 }
 .total-price table{
   border-top: 3px solid #101010;

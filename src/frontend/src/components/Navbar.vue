@@ -11,7 +11,7 @@
     <ul>
       <li><router-link to="/" @click="selectCategory('')">Strona główna</router-link></li>
       <CategoryDropdown></CategoryDropdown>
-      <li><router-link to="/cart">Koszyk</router-link></li>
+      <li><router-link to="/cart">Koszyk</router-link><span class="translate-middle badge rounded-pill bg-danger">{{totalItems}}</span></li>
       <li>
         <a href="#"><i class="fab fa-facebook"></i></a>
         <a href="#"><i class="fab fa-twitter"></i></a>
@@ -29,6 +29,7 @@
 <script>
 import CategoryDropdown from '@/components/CategoryDropdown'
 import { useProduct } from '@/composables/useProduct'
+import { useCartProduct } from '@/composables/useCartProduct'
 export default {
   name: 'Navbar',
   components: { CategoryDropdown },
@@ -39,12 +40,14 @@ export default {
     const selectCategory = (category) => {
       setSelectedCategory(category)
     }
+    const {
+      totalItems
+    } = useCartProduct()
     return {
-      selectCategory
+      selectCategory, totalItems
     }
   }
 }
-
 </script>
 
 <style>
