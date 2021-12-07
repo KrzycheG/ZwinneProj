@@ -1,17 +1,46 @@
 package com.example.demo.pdfService;
 
+import com.example.demo.book.book;
+import com.example.demo.cart.cartController;
+import com.example.demo.invoice.invoice;
+import com.example.demo.invoice.invoiceController;
 import com.lowagie.text.*;
 import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 @Service
 public class pdfGeneratorService {
+
+    invoiceController invoiceController;
+
+    cartController cartController;
+
+    @Autowired
+    public pdfGeneratorService(invoiceController invoiceController,cartController cartController) {
+        this.invoiceController = invoiceController;
+        this.cartController=cartController;
+    }
+
+
+
+
     public void export(HttpServletResponse response) throws IOException {
+
+        List<invoice> invoiceList=invoiceController.getinvoices();
+
+        List<book> cartList=cartController.cartAllBooks();
+
+        int n=invoiceList.size()-1;
+        String zipCode=invoiceList.get(n).getZipCode().toString();
+
+
         Document document = new Document(PageSize.A4);
         PdfWriter.getInstance(document,response.getOutputStream());
 
@@ -46,6 +75,7 @@ public class pdfGeneratorService {
         PdfPTable tableDane = null;
         PdfPCell cellDane = null;
 
+
         tableDane = new PdfPTable(columnDefinitionSize);
         tableDane.getDefaultCell().setBorder(0);
         tableDane.setHorizontalAlignment(0);
@@ -58,20 +88,21 @@ public class pdfGeneratorService {
         tableDane.addCell(new Phrase("Dane nadawcy:", fontBold));
         tableDane.addCell(new Phrase("Dane odbiorcy:", fontBold));
         tableDane.addCell(new Phrase("TWOJA KSIAZKA", fontNormal));
-        tableDane.addCell(new Phrase("Imie i nazwisko", fontNormal));
+        tableDane.addCell(new Phrase(invoiceList.get(n).getFirstName()+" "+invoiceList.get(n).getLastName(), fontNormal));
         tableDane.addCell(new Phrase("ul. Mariacka 2", fontNormal));
-        tableDane.addCell(new Phrase("ulica i numer", fontNormal));
+        tableDane.addCell(new Phrase("ul. "+invoiceList.get(n).getStreet()+" "+invoiceList.get(n).getHouseNumber()+"/"+invoiceList.get(n).getApartmentNumber(), fontNormal));
         tableDane.addCell(new Phrase("Katowice 41-123", fontNormal));
-        tableDane.addCell(new Phrase("miasto i kod pocztowy", fontNormal));
+        tableDane.addCell(new Phrase(invoiceList.get(n).getCity()+" "+zipCode.substring(0,2)+'-'+zipCode.substring(2), fontNormal));
         tableDane.addCell(new Phrase("NIP: 9348539234", fontNormal));
-        tableDane.addCell(new Phrase("kraj", fontNormal));
+        tableDane.addCell(new Phrase(invoiceList.get(n).getCountry(), fontNormal));
         tableDane.addCell(new Phrase("", fontNormal));
         tableDane.addCell(new Phrase("\n", fontNormal));
 
 
+
 //        tabela z zawartoscia koszyka:
 
-        float[] columnDefinitionSize2 = { 1f,5f,2f,2f};
+        float[] columnDefinitionSize2 = { 1f,7f,2f};
         PdfPTable table = null;
         PdfPCell cell = null;
         table = new PdfPTable(columnDefinitionSize2);
@@ -84,14 +115,30 @@ public class pdfGeneratorService {
         cell.setColspan(columnDefinitionSize2.length);
         cell.setHorizontalAlignment(1);
         table.addCell(cell);
-        table.addCell(new Phrase("numer", fontBold));
+        table.addCell(new Phrase("id", fontBold));
         table.addCell(new Phrase("nazwa produktu", fontBold));
-        table.addCell(new Phrase("ilosc", fontBold));
         table.addCell(new Phrase("cena", fontBold));
-        table.addCell(new Phrase("5", fontNormal));
-        table.addCell(new Phrase("6", fontNormal));
-        table.addCell(new Phrase("7", fontNormal));
-        table.addCell(new Phrase("8", fontNormal));
+
+//        table.addCell(new Phrase(cartList.get(0).getId().toString(), fontNormal));
+//        table.addCell(new Phrase(cartList.get(0).getTitle(), fontNormal));
+//        table.addCell(new Phrase(Double.toString(cartList.get(0).getPrice()), fontNormal));
+
+        double suma=0;
+
+        for (int i = 0; i < cartList.size(); i++) {
+            table.addCell(new Phrase(cartList.get(i).getId().toString(), fontNormal));
+            table.addCell(new Phrase(cartList.get(i).getTitle(), fontNormal));
+            table.addCell(new Phrase(Double.toString(cartList.get(i).getPrice())+ " PLN", fontNormal));
+            suma+=cartList.get(i).getPrice();
+        }
+
+        PdfPCell sum=null;
+
+        sum = new PdfPCell(new Phrase("Suma: " + suma + " PLN",fontBoldBig));
+        sum.setColspan(columnDefinitionSize2.length);
+        sum.setHorizontalAlignment(2);
+
+       table.addCell(sum);
 
 
         document.add(tytul);//FAKTURA
