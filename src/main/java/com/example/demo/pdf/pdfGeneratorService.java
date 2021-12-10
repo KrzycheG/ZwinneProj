@@ -1,7 +1,8 @@
-package com.example.demo.pdfService;
+package com.example.demo.pdf;
 
 import com.example.demo.book.book;
 import com.example.demo.cart.cartController;
+import com.example.demo.cart.cartRepository;
 import com.example.demo.invoice.invoice;
 import com.example.demo.invoice.invoiceController;
 import com.lowagie.text.*;
@@ -21,11 +22,12 @@ public class pdfGeneratorService {
     invoiceController invoiceController;
 
     cartController cartController;
-
+    cartRepository cartRepository;
     @Autowired
-    public pdfGeneratorService(invoiceController invoiceController,cartController cartController) {
+    public pdfGeneratorService(invoiceController invoiceController,cartController cartController,cartRepository cartRepository) {
         this.invoiceController = invoiceController;
         this.cartController=cartController;
+        this.cartRepository = cartRepository;
     }
 
 
@@ -147,5 +149,7 @@ public class pdfGeneratorService {
         document.add(table);
 
         document.close();
+
+        cartRepository.deleteAll();
     }
 }

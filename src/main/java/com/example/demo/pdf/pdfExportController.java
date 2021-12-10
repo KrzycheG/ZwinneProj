@@ -1,11 +1,7 @@
-package com.example.demo.pdfController;
+package com.example.demo.pdf;
 
 
-import com.example.demo.invoice.InvoiceService;
-import com.example.demo.invoice.invoice;
-import com.example.demo.invoice.invoiceController;
-import com.example.demo.pdfService.pdfGeneratorService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.demo.cart.cartRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -14,16 +10,18 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 @Controller
 public class pdfExportController {
 
     private final pdfGeneratorService pdfGeneratorService;
 
+
     public pdfExportController(pdfGeneratorService pdfGeneratorService) {
         this.pdfGeneratorService = pdfGeneratorService;
     }
+
+
 
     @GetMapping("/pdf/generate")
     public void generatePDF(HttpServletResponse response) throws IOException {
