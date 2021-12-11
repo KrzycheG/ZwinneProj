@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.util.Optional.empty;
 
 
 @Service
@@ -29,13 +30,26 @@ public class cartService {
              Long bookId,
              cart cartRequest
     ) {
-         BookRepository.findById(bookId)
-                .map(book -> {
-                    cartRequest.setBooks(book);
-                    return CartRepository.save(cartRequest);
-                });
 
 
+        if(CartRepository.findByBooks_Id(bookId) == null){
+
+            BookRepository.findById(bookId)
+                    .map(book -> {
+                        cartRequest.setBooks(book);
+                        return CartRepository.save(cartRequest);
+                    });
+
+        }
+
+        else {
+
+            cart cart1 = CartRepository.findByBooks_Id(bookId);
+            cart1.setQuantity(cart1.getQuantity() +1);
+
+            CartRepository.save(cart1);
+
+        }
     }
 
     public List<book> cartAllBooks(){
