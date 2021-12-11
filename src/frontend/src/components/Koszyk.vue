@@ -51,7 +51,7 @@ export default {
     getProducts()
     getsum()
     const deleteClick = async () => {
-      await axios.delete('http://localhost:8080/api/v1/cart/books/carts/' + this.product.id)
+      await axios.delete('http://localhost:8080/api/v1/cart/books/carts/' + props.product.id)
     }
     return {
       deleteClick,
