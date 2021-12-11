@@ -1,16 +1,10 @@
 <template>
 <div class="small-container cart-page">
     <table>
-        <tr>
-            <th>Produkty</th>
-            <th>Ilosć</th>
-            <th>Wartość</th>
-        </tr>
-
-      <tr v-for="product of products" :key="product.id" :product="product">
+      <tr>
         <td>
           <div class="cart-info">
-            <img :src="product.cover">
+            <img alt="okładka" :src="product.cover">
             <div>
               <p>Autor: {{product.author}}</p>
               <p>Tytuł: {{product.title}}</p>
@@ -26,37 +20,23 @@
         <td>{{product.price}} zł</td>
       </tr>
     </table>
-      <div class="total-price">
-        <table>
-          <tr>
-              <td>Suma</td>
-            <td>{{sum}} zł</td>
-          </tr>
-        </table>
-      </div>
+
 </div>
 </template>
 
 <script>
-import { useCartProduct } from '@/composables/useCartProduct'
 import axios from 'axios'
 
 export default {
   name: 'Koszyk',
   props: ['product'],
-  setup (props) {
-    const {
-      getProducts, products, getsum, sum
-    } = useCartProduct()
-    getProducts()
-    getsum()
+  setup (props, { emit }) {
     const deleteClick = async () => {
       await axios.delete('http://localhost:8080/api/v1/cart/books/carts/' + props.product.id)
+      emit('product-delete', props.product.id)
     }
     return {
-      deleteClick,
-      products,
-      sum
+      deleteClick
     }
   }
 }
@@ -104,11 +84,6 @@ td img{
   height: 200px;
   margin-right: 20px;
   box-shadow: 0 0 10px #000;
-}
-.total-price{
-  display: flex;
-  justify-content: flex-end;
-
 }
 .total-price table{
   border-top: 3px solid #101010;

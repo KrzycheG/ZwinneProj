@@ -1,7 +1,7 @@
-package com.example.demo.pdfController;
+package com.example.demo.pdf;
 
 
-import com.example.demo.pdfService.pdfGeneratorService;
+import com.example.demo.cart.cartRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -16,9 +16,12 @@ public class pdfExportController {
 
     private final pdfGeneratorService pdfGeneratorService;
 
+
     public pdfExportController(pdfGeneratorService pdfGeneratorService) {
         this.pdfGeneratorService = pdfGeneratorService;
     }
+
+
 
     @GetMapping("/pdf/generate")
     public void generatePDF(HttpServletResponse response) throws IOException {
@@ -29,6 +32,8 @@ public class pdfExportController {
         String headerKey="Content-Disposition";
         String headerValue = "attachment; filename=faktura_"+currentDateTime + ".pdf";
         response.setHeader(headerKey, headerValue);
+
+
 
         this.pdfGeneratorService.export(response);
     }
