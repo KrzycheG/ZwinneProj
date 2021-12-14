@@ -30,16 +30,17 @@ export default {
   components: { Checkout, Koszyk },
   setup () {
     const {
-      getProducts, products, getsum, sum
+      getProducts, products, getsum, sum, getQuantity, quantity
     } = useCartProduct()
     getProducts()
     getsum()
+    getQuantity()
     const handleDelete = () => {
       getProducts()
       getsum()
     }
     return {
-      products, sum, handleDelete
+      products, sum, handleDelete, quantity
     }
   }
 }
