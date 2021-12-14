@@ -1,5 +1,5 @@
 <template>
-<div class="small-container cart-page">
+  <div class="small-container cart-page">
     <table>
       <tr>
         <td>
@@ -11,33 +11,19 @@
               <p>Gatunek: {{product.categoryName}}</p>
               <small>Cena: {{product.price}} zł </small>
               <br>
-              <button class="btn btn-primary" @click="deleteClick"> Usuń</button>
             </div>
           </div>
         </td>
-        <td><input type="number" :value="product.quantity"></td>
         <td>{{product.price}} zł</td>
       </tr>
     </table>
-
-</div>
+  </div>
 </template>
 
 <script>
-import axios from 'axios'
-
 export default {
-  name: 'Koszyk',
-  props: ['product'],
-  setup (props, { emit }) {
-    const deleteClick = async () => {
-      await axios.delete('http://localhost:8080/api/v1/cart/books/carts/' + props.product.id)
-      emit('product-delete', props.product.id)
-    }
-    return {
-      deleteClick
-    }
-  }
+  name: 'SummaryItem',
+  props: ['product']
 }
 </script>
 
