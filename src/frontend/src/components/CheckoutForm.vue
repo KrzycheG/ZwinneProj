@@ -22,7 +22,7 @@
     </div>
     <div>
       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zamknij</button>
-      <button type="submit" class="btn btn-primary">Zamawiam</button>
+      <button type="submit" class="btn btn-primary">Podsumowanie</button>
     </div>
   </form>
 </template>
@@ -43,7 +43,7 @@ export default {
     })
     const handleSubmit = async () => {
       await axios.post('http://localhost:8080/api/v1/book/invoice/add', invoice.value)
-      window.open('http://localhost:8080/pdf/generate', 'blank')
+      window.open('http://localhost:8081/summary')
     }
     return { invoice, handleSubmit }
   }
