@@ -4,6 +4,8 @@ package com.example.demo.cart;
 import com.example.demo.book.book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin
@@ -48,10 +50,23 @@ public class cartController {
 
     }
 
+    @GetMapping("/quantity/{bookID}")
+    public List<Integer> quantity(
+            @PathVariable(value = "bookID") Long bookID
+    ){
+
+        return CartService.quantity(bookID);
+
+    }
+
+
+
     @DeleteMapping("/books/carts/{bookID}")
     public void deleteBookFromCart(
             @PathVariable(value = "bookID") Long bookID
     ){
         CartService.deleteBookFromCart(bookID);
     }
+
+
 }

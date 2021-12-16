@@ -69,6 +69,35 @@ public class cartService {
 
     }
 
+
+    public List<Integer> quantity(
+            Long bookID
+    ){
+
+        cart cartQuantity = CartRepository.findByBooks_Id(bookID);
+
+        int x = cartQuantity.getQuantity();
+        ArrayList<Integer> asd = new ArrayList<>();
+
+        asd.add(x);
+
+        return asd;
+
+    }
+
+    public void quantityAdd(
+            Long bookID
+    ){
+
+        cart cartQuantity = CartRepository.findByBooks_Id(bookID);
+
+        int x = cartQuantity.getQuantity();
+        ArrayList<Integer> asd = new ArrayList<>();
+
+        asd.add(x);
+
+    }
+
     public void deleteBookFromCart(
             Long bookID
     ) {
