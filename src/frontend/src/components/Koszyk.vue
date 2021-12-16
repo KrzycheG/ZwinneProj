@@ -1,6 +1,4 @@
 <template>
-<div class="small-container cart-page">
-    <table>
       <tr>
         <td>
           <div class="cart-info">
@@ -10,17 +8,12 @@
               <p>Tytuł: {{product.title}}</p>
               <p>Gatunek: {{product.categoryName}}</p>
               <small>Cena: {{product.price}} zł </small>
-              <br>
-              <button class="btn btn-primary" @click="deleteClick"> Usuń</button>
             </div>
           </div>
         </td>
-        <td><input type="number" :value="product.quantity"></td>
-        <td>{{product.price}} zł</td>
+        <td><input @change="handleChange" type="number" :value="product.quantity"><button class="btn btn-primary" @click="deleteClick"> Usuń</button></td>
+        <td>{{Math.round(product.price*product.quantity*100)/100}} zł</td>
       </tr>
-    </table>
-
-</div>
 </template>
 
 <script>
@@ -34,8 +27,15 @@ export default {
       await axios.delete('http://localhost:8080/api/v1/cart/books/carts/' + props.product.id)
       emit('product-delete', props.product.id)
     }
+    const handleChange = async event => {
+      if (event.target.value === '0') {
+        return deleteClick()
+      }
+      await axios.get('http://localhost:8080/api/v1/cart/quantityAdd/' + props.product.id + '/' + event.target.value)
+      emit('update-quantity', props.product.id, event.target.value)
+    }
     return {
-      deleteClick
+      deleteClick, handleChange
     }
   }
 }
@@ -83,12 +83,6 @@ td img{
   height: 200px;
   margin-right: 20px;
   box-shadow: 0 0 10px #000;
-}
-.total-price table{
-  border-top: 3px solid #101010;
-  width: 100%;
-  max-width: 470px;
-
 }
 td:last-child{
   text-align: right;

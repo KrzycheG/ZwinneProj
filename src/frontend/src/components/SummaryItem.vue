@@ -1,23 +1,19 @@
 <template>
-  <div class="small-container cart-page">
-    <table>
-      <tr>
-        <td>
-          <div class="cart-info">
-            <img alt="okładka" :src="product.cover">
-            <div>
-              <p>Autor: {{product.author}}</p>
-              <p>Tytuł: {{product.title}}</p>
-              <p>Gatunek: {{product.categoryName}}</p>
-              <small>Cena: {{product.price}} zł </small>
-              <br>
-            </div>
-          </div>
-        </td>
-        <td>{{product.price}} zł</td>
-      </tr>
-    </table>
-  </div>
+  <tr>
+    <td>
+      <div class="cart-info">
+        <img alt="okładka" :src="product.cover">
+        <div>
+          <p>Autor: {{product.author}}</p>
+          <p>Tytuł: {{product.title}}</p>
+          <p>Gatunek: {{product.categoryName}}</p>
+          <small>Cena: {{product.price}} zł </small>
+        </div>
+      </div>
+    </td>
+    <td>{{ product.quantity }}</td>
+    <td>{{Math.round(product.price*product.quantity*100)/100}} zł</td>
+  </tr>
 </template>
 
 <script>
@@ -69,12 +65,6 @@ td img{
   height: 200px;
   margin-right: 20px;
   box-shadow: 0 0 10px #000;
-}
-.total-price table{
-  border-top: 3px solid #101010;
-  width: 100%;
-  max-width: 470px;
-
 }
 td:last-child{
   text-align: right;

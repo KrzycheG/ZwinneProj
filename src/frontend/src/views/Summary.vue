@@ -9,18 +9,18 @@
       <summary-item v-for="product of products" :key="product.id" :product="product"/>
     </table>
   </div>
-  <div class="total-price">
+  <div class="total-pricee">
     <table>
+      <tr>
+        <td>Suma: {{sum}}</td>
+      </tr>
       <tr>
         <p>{{ invoice.firstName }} {{ invoice.lastName }} </p>
         <p>ul. {{ invoice.street }} {{ invoice.houseNumber }}/{{ invoice.apartmentNumber }}</p>
         <p>{{ invoice.city }} {{ invoice.zipCode }}</p>
         <p>{{ invoice.country }}</p>
       </tr>
-      <tr>
-        <td>Suma</td>
-        <td>{{sum}} zł</td>
-      </tr>
+
     </table>
   </div>
   <a href="/"><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#checkout" @click="Order">Zamawiam</button></a>
@@ -41,13 +41,13 @@ export default {
     } = useInvoice()
     getInvoice()
     const {
-      getProducts, products, getsum, sum, getQuantity, quantity
+      getProducts, products, getsum, sum
     } = useCartProduct()
     getProducts()
     getsum()
-    getQuantity()
+
     return {
-      products, sum, quantity, Order, invoice
+      products, sum, Order, invoice
     }
   }
 }
@@ -58,11 +58,10 @@ button{
   float: right;
   margin-right: 60px;
 }
-.total-price{
-  display: flex;
-  justify-content: flex-end;
-}
 .invoiceData{
   padding: 20px;
+}
+.total-pricee{
+  border-top: 3px solid #101010;
 }
 </style>

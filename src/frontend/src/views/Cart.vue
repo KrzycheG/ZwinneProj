@@ -6,17 +6,14 @@
         <th>Ilosć</th>
         <th>Wartość</th>
       </tr>
-      <koszyk @product-delete="handleDelete" v-for="product of products" :key="product.id" :product="product"/>
-    </table>
-  </div>
-  <div class="total-price">
-    <table>
+      <koszyk @product-delete="handleChange" @update-quantity="handleChange" v-for="product of products" :key="product.id" :product="product"/>
       <tr>
-        <td>Suma</td>
-        <td>{{sum}} zł</td>
+        <td></td>
+        <td class="total-pricee"></td>
+        <td class="total-pricee">Suma: {{Math.round(sum*100)/100}} zł</td>
       </tr>
     </table>
-  </div>
+    </div>
   <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#checkout">Uzupełnij dane do wysyłki</button>
   <checkout></checkout>
 </template>
@@ -30,17 +27,16 @@ export default {
   components: { Checkout, Koszyk },
   setup () {
     const {
-      getProducts, products, getsum, sum, getQuantity, quantity
+      getProducts, products, getsum, sum
     } = useCartProduct()
     getProducts()
     getsum()
-    getQuantity()
-    const handleDelete = () => {
+    const handleChange = () => {
       getProducts()
       getsum()
     }
     return {
-      products, sum, handleDelete, quantity
+      products, sum, handleChange
     }
   }
 }
@@ -51,8 +47,7 @@ button{
  float: right;
   margin-right: 60px;
 }
-.total-price{
-  display: flex;
-  justify-content: flex-end;
+.total-pricee{
+  border-top: 3px solid #101010;
 }
 </style>
