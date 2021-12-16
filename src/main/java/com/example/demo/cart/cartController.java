@@ -59,6 +59,16 @@ public class cartController {
 
     }
 
+    @GetMapping("/quantityAdd/{bookID}/{quantity}")
+    public String quantityAdd(
+            @PathVariable(value = "bookID") Long bookID,
+            @PathVariable(value = "quantity") int quantity
+    ){
+
+        CartService.quantityAdd(bookID,quantity);
+        return "Gra gitara";
+    }
+
 
 
     @DeleteMapping("/books/carts/{bookID}")

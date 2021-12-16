@@ -100,15 +100,14 @@ public class cartService {
     }
 
     public void quantityAdd(
-            Long bookID
+            Long bookID,
+            int quantitty
     ){
 
         cart cartQuantity = CartRepository.findByBooks_Id(bookID);
 
-        int x = cartQuantity.getQuantity();
-        ArrayList<Integer> asd = new ArrayList<>();
-
-        asd.add(x);
+        cartQuantity.setQuantity(quantitty);
+        CartRepository.save(cartQuantity);
 
     }
 
