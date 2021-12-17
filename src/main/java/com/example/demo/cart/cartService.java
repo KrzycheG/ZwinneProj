@@ -75,7 +75,9 @@ public class cartService {
         double sumo = 0;
         for(book x : sumBook){
 
-            sumo+= x.getPrice();
+            cart b = CartRepository.findByBooks_Id(x.getId());
+            sumo+= x.getPrice() * b.getQuantity();
+
         }
         suma.add(sumo);
 

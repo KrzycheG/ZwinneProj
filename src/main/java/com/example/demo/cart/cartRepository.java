@@ -12,7 +12,7 @@ public interface  cartRepository extends JpaRepository<cart,Long> {
     public List<book> FindAllWithDescriptionQuery();
 
     Optional<cart> findByCartIDAndBooks_Id (Long cartId, Long bookId);
-    cart findByBooks_Id (Long id);
+    public cart findByBooks_Id (Long id);
 
 
 

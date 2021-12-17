@@ -143,8 +143,10 @@ String x="";
             x="";
             cena=cartList.get(i).getPrice()*cart.get(i).getQuantity();
             table.addCell(new Phrase(Double.toString(cena)+ " PLN", fontNormal));
-            suma+=cena;
+
         }
+
+        suma =  cartController.sumAll().get(0);
 String sumaS=String.format("%.2f", suma);
         PdfPCell sum=null;
 
