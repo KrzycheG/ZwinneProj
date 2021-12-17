@@ -4,12 +4,12 @@
     <div class="logo"><h1><router-link to="/">Twoja książka</router-link></h1></div>
     <div class="search-box">
       <form>
-        <input type ="text" name ="Szukaj" id ="srch" placeholder="Znajdź swoją ulubioną książkę">
+        <input type ="text" @input="handleChange" v-model="search" placeholder="Znajdź swoją ulubioną książkę">
         <button type ="submit"><i class="fa fa-search"></i></button>
       </form>
     </div>
     <ul>
-      <li><router-link to="/" @click="selectCategory('')">Strona główna</router-link></li>
+      <li><router-link to="/" @click="selectCategory(''), setSearch('')">Strona główna</router-link></li>
       <CategoryDropdown></CategoryDropdown>
       <li><router-link to="/cart">Koszyk</router-link><span class="translate-middle badge rounded-pill bg-danger">{{totalItems}}</span></li>
       <li>
@@ -33,18 +33,26 @@ import { useCartProduct } from '@/composables/useCartProduct'
 export default {
   name: 'Navbar',
   components: { CategoryDropdown },
+  data () {
+    return {
+      search: ''
+    }
+  },
   setup () {
     const {
-      setSelectedCategory
+      setSelectedCategory, setSearch
     } = useProduct()
     const selectCategory = (category) => {
       setSelectedCategory(category)
+    }
+    const handleChange = async event => {
+      setSearch(event.target.value)
     }
     const {
       totalItems
     } = useCartProduct()
     return {
-      selectCategory, totalItems
+      selectCategory, totalItems, handleChange, setSearch
     }
   }
 }
