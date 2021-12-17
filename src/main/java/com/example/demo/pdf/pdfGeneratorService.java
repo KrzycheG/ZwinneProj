@@ -1,6 +1,7 @@
 package com.example.demo.pdf;
 
 import com.example.demo.book.book;
+import com.example.demo.cart.cart;
 import com.example.demo.cart.cartController;
 import com.example.demo.cart.cartRepository;
 import com.example.demo.invoice.invoice;
@@ -36,6 +37,8 @@ public class pdfGeneratorService {
     public void export(HttpServletResponse response) throws IOException {
 
         List<invoice> invoiceList=invoiceController.getinvoices();
+
+        List<cart> cart=cartController.getcarts();
 
         List<book> cartList=cartController.cartAllBooks();
 
@@ -104,7 +107,7 @@ public class pdfGeneratorService {
 
 //        tabela z zawartoscia koszyka:
 
-        float[] columnDefinitionSize2 = { 1f,7f,2f};
+        float[] columnDefinitionSize2 = { 1f,5f,1f,1f,2f};
         PdfPTable table = null;
         PdfPCell cell = null;
         table = new PdfPTable(columnDefinitionSize2);
@@ -119,24 +122,34 @@ public class pdfGeneratorService {
         table.addCell(cell);
         table.addCell(new Phrase("id", fontBold));
         table.addCell(new Phrase("nazwa produktu", fontBold));
-        table.addCell(new Phrase("cena", fontBold));
+        table.addCell(new Phrase("cena za sztuke", fontBold));
+        table.addCell(new Phrase("ilosc", fontBold));
+        table.addCell(new Phrase("cena lacznie", fontBold));
 
 //        table.addCell(new Phrase(cartList.get(0).getId().toString(), fontNormal));
 //        table.addCell(new Phrase(cartList.get(0).getTitle(), fontNormal));
 //        table.addCell(new Phrase(Double.toString(cartList.get(0).getPrice()), fontNormal));
 
         double suma=0;
-
+double cena=0;
+int ilosc=0;
+String x="";
         for (int i = 0; i < cartList.size(); i++) {
             table.addCell(new Phrase(cartList.get(i).getId().toString(), fontNormal));
             table.addCell(new Phrase(cartList.get(i).getTitle(), fontNormal));
-            table.addCell(new Phrase(Double.toString(cartList.get(i).getPrice())+ " PLN", fontNormal));
-            suma+=cartList.get(i).getPrice();
+            table.addCell(new Phrase(Double.toString(cartList.get(i).getPrice()), fontNormal));
+            ilosc=cart.get(i).getQuantity();
+            table.addCell(new Phrase(x+ilosc, fontNormal));
+            x="";
+            cena=cartList.get(i).getPrice()*cart.get(i).getQuantity();
+            table.addCell(new Phrase(Double.toString(cena)+ " PLN", fontNormal));
+            suma+=cena;
         }
-
+String sumaS=String.format("%.2f", suma);
         PdfPCell sum=null;
 
-        sum = new PdfPCell(new Phrase("Suma: " + suma + " PLN",fontBoldBig));
+
+        sum = new PdfPCell(new Phrase("Suma: "+sumaS+" PLN",fontBoldBig));
         sum.setColspan(columnDefinitionSize2.length);
         sum.setHorizontalAlignment(2);
 
