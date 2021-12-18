@@ -1,6 +1,8 @@
 package com.example.demo.pdf;
 
 import com.example.demo.book.book;
+import com.example.demo.book.bookController;
+import com.example.demo.book.bookRepository;
 import com.example.demo.cart.cart;
 import com.example.demo.cart.cartController;
 import com.example.demo.cart.cartRepository;
@@ -24,11 +26,14 @@ public class pdfGeneratorService {
 
     cartController cartController;
     cartRepository cartRepository;
+    bookController BookController;
+
     @Autowired
-    public pdfGeneratorService(invoiceController invoiceController,cartController cartController,cartRepository cartRepository) {
+    public pdfGeneratorService(invoiceController invoiceController,cartController cartController,cartRepository cartRepository, bookController bookController) {
         this.invoiceController = invoiceController;
         this.cartController=cartController;
         this.cartRepository = cartRepository;
+        this.BookController = bookController;
     }
 
 
@@ -144,6 +149,7 @@ String x="";
             cena=cartList.get(i).getPrice()*cart.get(i).getQuantity();
             table.addCell(new Phrase(Double.toString(cena)+ " PLN", fontNormal));
 
+           BookController.changeBookQuantity(cartList.get(i).getId());
         }
 
         suma =  cartController.sumAll().get(0);
@@ -166,5 +172,7 @@ String sumaS=String.format("%.2f", suma);
         document.close();
 
         cartRepository.deleteAll();
+
+
     }
 }

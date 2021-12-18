@@ -1,6 +1,7 @@
 package com.example.demo.cart;
 
 import com.example.demo.book.book;
+import com.example.demo.book.bookController;
 import com.example.demo.book.bookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,11 @@ public class cartService {
     cartRepository CartRepository;
 
     @Autowired
+    bookController BookController;
+
+    @Autowired
     public bookRepository BookRepository;
+
 
 
     public List<cart> getcarts() {
@@ -31,6 +36,7 @@ public class cartService {
              cart cartRequest
     ) {
 
+        cart cart1 = CartRepository.findByBooks_Id(bookId);
 
         if(CartRepository.findByBooks_Id(bookId) == null){
 
@@ -41,15 +47,13 @@ public class cartService {
                     });
 
         }
-
         else {
 
-            cart cart1 = CartRepository.findByBooks_Id(bookId);
             cart1.setQuantity(cart1.getQuantity() +1);
-
             CartRepository.save(cart1);
 
         }
+
     }
 
     public List<book> cartAllBooks(){
