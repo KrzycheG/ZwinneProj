@@ -8,10 +8,12 @@
               <p>Tytuł: {{product.title}}</p>
               <p>Gatunek: {{product.categoryName}}</p>
               <small>Cena: {{product.price}} zł </small>
+              <p></p>
+              <small>Dostępna ilość: {{product.unitsInStock}}</small>
             </div>
           </div>
         </td>
-        <td><input @change="handleChange" type="number" :value="product.quantity"><button class="btn btn-primary" @click="deleteClick"> Usuń</button></td>
+        <td><input class="input-box" @change="handleChange" type="number" :value="product.quantity"><button class="btn btn-primary" @click="deleteClick"> Usuń</button></td>
         <td>{{Math.round(product.price*product.quantity*100)/100}} zł</td>
       </tr>
 </template>
@@ -31,6 +33,10 @@ export default {
       if (event.target.value === '0') {
         return deleteClick()
       }
+      if (event.target.value > props.product.unitsInStock) {
+        alert('Dostępna ilość produktów w magazynie: ' + props.product.unitsInStock)
+        event.target.value = props.product.unitsInStock
+      }
       await axios.get('http://localhost:8080/api/v1/cart/quantityAdd/' + props.product.id + '/' + event.target.value)
       emit('update-quantity', props.product.id, event.target.value)
     }
@@ -47,6 +53,9 @@ export default {
   max-width: 100%;
   font-size: 20px;
 
+}
+.input-box{
+  width: 60px ;
 }
 table{
   width: 100%;
